@@ -9,6 +9,7 @@ import React, { useContext, useEffect } from "react";
 import { MyPalette } from "@/constants/Colors";
 import Animated, {
   FadeIn,
+  FadeInDown,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
@@ -21,7 +22,7 @@ import { ThemeContext } from "./_layout";
 
 const { width } = Dimensions.get("window");
 const PADDING = 20;
-const BOX_SIZE = (width - PADDING * 4) * 0.41;
+const BOX_SIZE = (width - PADDING * 4) * 0.25;
 
 const styles = StyleSheet.create({
   box: {
@@ -30,29 +31,24 @@ const styles = StyleSheet.create({
     flex: 1,
     gap: 20,
     backgroundColor: MyPalette.myWhite,
-    alignItems: "center",
   },
   title: {
     color: MyPalette.lightBlue,
     fontSize: 28,
     fontFamily: "Nunito_800ExtraBold",
-    textAlign: "center",
+    textAlign: "left",
   },
   boxes: {
-    flexDirection: "row",
-    flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "center",
   },
   textBox: {
-    width: BOX_SIZE,
-    height: BOX_SIZE * 1.618,
-    borderWidth: 1.2,
-    borderColor: MyPalette.darkBlue,
+    height: BOX_SIZE,
+    width: BOX_SIZE * 4,
     backgroundColor: MyPalette.middleBlue,
     alignItems: "center",
     justifyContent: "center",
-    margin: PADDING,
+    margin: 4,
     borderRadius: 10,
     padding: PADDING,
   },
@@ -67,30 +63,10 @@ const styles = StyleSheet.create({
 const settings = () => {
   const [theme, setTheme] = useContext(ThemeContext);
   const router = useRouter();
-  const delta = useSharedValue(0);
-  useEffect(() => {
-    delta.value = withDelay(
-      300,
-      withSequence(
-        withTiming(-2, { duration: 30 }),
-        withRepeat(withTiming(2, { duration: 100 }), 5, true),
-        withTiming(0, { duration: 30 })
-      )
-    );
-  }, []);
 
-  const rStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          rotate: `${delta.value}deg`,
-        },
-      ],
-    };
-  });
   return (
     <View style={styles.box}>
-      <Text style={styles.title}>СОДЕРЖАНИЕ КАРТОЧЕК:</Text>
+      <Text style={styles.title}>Учу:</Text>
       <View style={styles.boxes}>
         <TouchableOpacity
           onPress={() => {
@@ -99,8 +75,8 @@ const settings = () => {
           }}
         >
           <Animated.View
-            entering={FadeIn.delay(200).duration(500)}
-            style={[styles.textBox, rStyle]}
+            entering={FadeInDown.delay(200).duration(500)}
+            style={[styles.textBox]}
           >
             <Text style={styles.text}>буквы</Text>
           </Animated.View>
@@ -112,8 +88,8 @@ const settings = () => {
           }}
         >
           <Animated.View
-            entering={FadeIn.delay(200).duration(500)}
-            style={[styles.textBox, rStyle]}
+            entering={FadeInDown.delay(250).duration(500)}
+            style={[styles.textBox]}
           >
             <Text style={styles.text}>слоги</Text>
           </Animated.View>
@@ -125,18 +101,23 @@ const settings = () => {
           }}
         >
           <Animated.View
-            entering={FadeIn.delay(200).duration(500)}
-            style={[styles.textBox, rStyle]}
+            entering={FadeInDown.delay(300).duration(500)}
+            style={[styles.textBox]}
           >
             <Text style={styles.text}>слова из 3 букв</Text>
           </Animated.View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => router.back()}>
+        <TouchableOpacity
+          onPress={() => {
+            setTheme("fourLongWords");
+            router.back();
+          }}
+        >
           <Animated.View
-            entering={FadeIn.delay(200).duration(500)}
-            style={[styles.textBox, rStyle]}
+            entering={FadeInDown.delay(350).duration(500)}
+            style={[styles.textBox]}
           >
-            <Text style={styles.text}>слова из 4-5 букв</Text>
+            <Text style={styles.text}>слова из 4 букв</Text>
           </Animated.View>
         </TouchableOpacity>
       </View>

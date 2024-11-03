@@ -2,6 +2,7 @@ import Card from "@/components/Card";
 import { MyPalette } from "@/constants/Colors";
 import {
   consonants,
+  fourLongWords,
   LENGTH,
   letters,
   threeLongWords,
@@ -94,6 +95,10 @@ export default function App() {
         ))}
       {theme === "threeLongWords" &&
         threeLongWords.map((l, i) => (
+          <Card key={i} textArray={l} index={i} shuffleBack={shuffleBack} />
+        ))}
+      {theme === "fourLongWords" &&
+        fourLongWords.map((l, i) => (
           <Card key={i} textArray={l} index={i} shuffleBack={shuffleBack} />
         ))}
       <StatusBar style="light" />
