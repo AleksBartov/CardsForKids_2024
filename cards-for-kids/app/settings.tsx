@@ -20,9 +20,9 @@ import Animated, {
 import { useRouter } from "expo-router";
 import { ThemeContext } from "./_layout";
 
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 const PADDING = 20;
-const BOX_SIZE = (width - PADDING * 4) * 0.25;
+const BOX_SIZE = width > height ? height * 0.15 : width * 0.2;
 
 const styles = StyleSheet.create({
   box: {

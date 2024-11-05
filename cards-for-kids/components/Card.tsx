@@ -17,7 +17,7 @@ import { MyPalette } from "@/constants/Colors";
 const { width, height } = Dimensions.get("window");
 
 const SNAP_POINTS = [-width, 0, width];
-const CARD_WIDTH = width * 0.6;
+const CARD_WIDTH = width > height ? width * 0.35 : width * 0.6;
 const CARD_HEIGHT = CARD_WIDTH * 1.614;
 const BORDER_PADDING = 6;
 const DURATION = 250;
@@ -25,7 +25,7 @@ const DURATION = 250;
 export default function Card({ textArray, index, shuffleBack }) {
   const offset = useSharedValue({ x: 0, y: 0 });
   const translateX = useSharedValue(0);
-  const translateY = useSharedValue(-1000);
+  const translateY = useSharedValue(-height * 2);
   const scale = useSharedValue(1);
   const rotateZ = useSharedValue(0);
   const rotateX = useSharedValue(Platform.OS === "ios" ? 30 : 5);
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   },
   card_text: {
     color: MyPalette.darkBlue,
-    fontSize: CARD_WIDTH - 160,
+    fontSize: CARD_WIDTH * 0.28,
     fontFamily: "Nunito_500Medium",
   },
 });
