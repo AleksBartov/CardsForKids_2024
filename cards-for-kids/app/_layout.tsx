@@ -9,9 +9,10 @@ export const ThemeContext = createContext();
 
 export default function RootLayout() {
   const [theme, setTheme] = useState("syllable");
+  const [isEnabled, setIsEnabled] = useState(false);
   const router = useRouter();
   return (
-    <ThemeContext.Provider value={[theme, setTheme]}>
+    <ThemeContext.Provider value={[theme, setTheme, isEnabled, setIsEnabled]}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { StyleSheet, View, Platform, Dimensions } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
@@ -13,6 +13,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { ReText, snapPoint } from "react-native-redash";
 import { MyPalette } from "@/constants/Colors";
+import { ThemeContext } from "@/app/_layout";
 
 const { width, height } = Dimensions.get("window");
 
@@ -23,6 +24,7 @@ const BORDER_PADDING = 6;
 const DURATION = 250;
 
 export default function Card({ textArray, index, shuffleBack }) {
+  const [theme, setTheme, isEnabled] = useContext(ThemeContext);
   const offset = useSharedValue({ x: 0, y: 0 });
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(-height * 2);
@@ -148,7 +150,7 @@ const styles = StyleSheet.create({
   },
   card_text: {
     color: MyPalette.darkBlue,
-    fontSize: CARD_WIDTH * 0.28,
+    fontSize: CARD_WIDTH * 0.24,
     fontFamily: "Nunito_500Medium",
   },
 });

@@ -1,11 +1,12 @@
 import {
   Dimensions,
   StyleSheet,
+  Switch,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MyPalette } from "@/constants/Colors";
 import Animated, {
   FadeIn,
@@ -58,10 +59,25 @@ const styles = StyleSheet.create({
     color: MyPalette.myWhite,
     textAlign: "center",
   },
+  switch: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    gap: 20,
+    marginTop: 40,
+    width: BOX_SIZE * 4,
+  },
+  switchText: {
+    fontFamily: "Nunito_500Medium",
+    fontSize: 18,
+    color: MyPalette.darkBlue,
+    textAlign: "center",
+  },
 });
 
 const settings = () => {
-  const [theme, setTheme] = useContext(ThemeContext);
+  const [theme, setTheme, isEnabled, setIsEnabled] = useContext(ThemeContext);
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const router = useRouter();
 
   return (
@@ -120,6 +136,19 @@ const settings = () => {
             <Text style={styles.text}>слова из 4 букв</Text>
           </Animated.View>
         </TouchableOpacity>
+        <View style={styles.switch}>
+          <Text style={styles.switchText}>с дефисом</Text>
+          <Switch
+            trackColor={{
+              false: MyPalette.darkBlue,
+              true: "#eae6fd",
+            }}
+            thumbColor={isEnabled ? MyPalette.lightBlue : MyPalette.myWhite}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+          />
+        </View>
       </View>
     </View>
   );

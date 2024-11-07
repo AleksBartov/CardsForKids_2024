@@ -3,6 +3,7 @@ import { MyPalette } from "@/constants/Colors";
 import {
   consonants,
   fourLongWords,
+  fourLongWords_,
   LENGTH,
   letters,
   threeLongWords,
@@ -47,7 +48,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   // console.log(words);
-  const [theme, setTheme] = useContext(ThemeContext);
+  const [theme, setTheme, isEnabled] = useContext(ThemeContext);
   const router = useRouter();
   const shuffleBack = useSharedValue(false);
 
@@ -98,7 +99,13 @@ export default function App() {
           <Card key={i} textArray={l} index={i} shuffleBack={shuffleBack} />
         ))}
       {theme === "fourLongWords" &&
+        !isEnabled &&
         fourLongWords.map((l, i) => (
+          <Card key={i} textArray={l} index={i} shuffleBack={shuffleBack} />
+        ))}
+      {theme === "fourLongWords" &&
+        isEnabled &&
+        fourLongWords_.map((l, i) => (
           <Card key={i} textArray={l} index={i} shuffleBack={shuffleBack} />
         ))}
       <StatusBar style="light" />
