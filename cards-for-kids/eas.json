@@ -17,5 +17,14 @@
       "distribution": "internal"
     },
     "production": {}
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "aleksandrbartov@yandex.ru",
+        "ascAppId": "6737782248",
+        "appleTeamId": "S4H22YJUMS"
+      }
+    }
   }
 }
