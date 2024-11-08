@@ -97,6 +97,14 @@ export default function Card({ textArray, index, shuffleBack }) {
       { scale: scale.value },
     ],
   }));
+  const rTextStyle = useAnimatedStyle(() => ({
+    fontSize:
+      theme === "fourLongWords"
+        ? CARD_WIDTH * 0.2
+        : theme === "threeLongWords"
+        ? CARD_WIDTH * 0.3
+        : CARD_WIDTH * 0.4,
+  }));
 
   const date = useDerivedValue(() => {
     const d = textArray[step.value];
@@ -108,7 +116,7 @@ export default function Card({ textArray, index, shuffleBack }) {
       <GestureDetector gesture={gesture}>
         <Animated.View style={[styles.card_container, style]}>
           <View style={styles.card_inner_border}>
-            <ReText style={styles.card_text} text={date} />
+            <ReText style={[styles.card_text, rTextStyle]} text={date} />
           </View>
         </Animated.View>
       </GestureDetector>
@@ -150,7 +158,6 @@ const styles = StyleSheet.create({
   },
   card_text: {
     color: MyPalette.darkBlue,
-    fontSize: CARD_WIDTH * 0.24,
     fontFamily: "Nunito_500Medium",
   },
 });

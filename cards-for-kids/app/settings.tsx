@@ -23,7 +23,7 @@ import { ThemeContext } from "./_layout";
 
 const { width, height } = Dimensions.get("window");
 const PADDING = 20;
-const BOX_SIZE = width > height ? height * 0.15 : width * 0.2;
+const BOX_SIZE = width > height ? height * 0.1 : width * 0.2;
 
 const styles = StyleSheet.create({
   box: {
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   textBox: {
     height: BOX_SIZE,
-    width: BOX_SIZE * 4,
+    width: BOX_SIZE * 3,
     backgroundColor: MyPalette.middleBlue,
     alignItems: "center",
     justifyContent: "center",
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-end",
     gap: 20,
-    marginTop: 40,
+    marginTop: 20,
     width: BOX_SIZE * 4,
   },
   switchText: {
