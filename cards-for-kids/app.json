@@ -29,7 +29,10 @@
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
-    "plugins": ["expo-router", "expo-font"],
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
     "experiments": {
       "typedRoutes": true
     },
@@ -40,6 +43,7 @@
       "eas": {
         "projectId": "99d1805d-a65d-4deb-9bc2-6a7518d90444"
       }
-    }
+    },
+    "owner": "aleksbartov"
   }
 }
