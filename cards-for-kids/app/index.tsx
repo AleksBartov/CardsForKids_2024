@@ -4,6 +4,7 @@ import {
   consonants,
   fourLongWords,
   fourLongWords_,
+  fiveLongWords,
   LENGTH,
   letters,
   threeLongWords,
@@ -106,6 +107,11 @@ export default function App() {
       {theme === "fourLongWords" &&
         isEnabled &&
         fourLongWords_.map((l, i) => (
+          <Card key={i} textArray={l} index={i} shuffleBack={shuffleBack} />
+        ))}
+      {theme === "fiveLongWords" &&
+        !isEnabled &&
+        fiveLongWords.map((l, i) => (
           <Card key={i} textArray={l} index={i} shuffleBack={shuffleBack} />
         ))}
       <StatusBar style="light" />

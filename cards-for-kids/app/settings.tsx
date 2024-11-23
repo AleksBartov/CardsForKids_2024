@@ -136,6 +136,19 @@ const settings = () => {
             <Text style={styles.text}>слова из 4 букв</Text>
           </Animated.View>
         </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            setTheme("fiveLongWords");
+            router.back();
+          }}
+        >
+          <Animated.View
+            entering={FadeInDown.delay(400).duration(500)}
+            style={[styles.textBox]}
+          >
+            <Text style={styles.text}>слова из 5 букв</Text>
+          </Animated.View>
+        </TouchableOpacity>
         <View style={styles.switch}>
           <Text style={styles.switchText}>с дефисом</Text>
           <Switch
