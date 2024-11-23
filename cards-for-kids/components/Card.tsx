@@ -99,7 +99,9 @@ export default function Card({ textArray, index, shuffleBack }) {
   }));
   const rTextStyle = useAnimatedStyle(() => ({
     fontSize:
-      theme === "fourLongWords"
+      theme === "fiveLongWords"
+        ? CARD_WIDTH * 0.15
+        : theme === "fourLongWords"
         ? CARD_WIDTH * 0.2
         : theme === "threeLongWords"
         ? CARD_WIDTH * 0.3
