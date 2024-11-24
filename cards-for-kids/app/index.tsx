@@ -9,6 +9,7 @@ import {
   letters,
   threeLongWords,
   vowels,
+  fiveLongWords_,
 } from "@/constants/CONSTANTS";
 import { Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
@@ -22,7 +23,7 @@ import {
   Nunito_900Black,
 } from "@expo-google-fonts/nunito";
 import { SplashScreen, useRouter } from "expo-router";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "./_layout";
 
 const words = consonants
@@ -112,6 +113,11 @@ export default function App() {
       {theme === "fiveLongWords" &&
         !isEnabled &&
         fiveLongWords.map((l, i) => (
+          <Card key={i} textArray={l} index={i} shuffleBack={shuffleBack} />
+        ))}
+      {theme === "fiveLongWords" &&
+        isEnabled &&
+        fiveLongWords_.map((l, i) => (
           <Card key={i} textArray={l} index={i} shuffleBack={shuffleBack} />
         ))}
       <StatusBar style="light" />
