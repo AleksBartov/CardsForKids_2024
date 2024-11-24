@@ -100,12 +100,12 @@ export default function Card({ textArray, index, shuffleBack }) {
   const rTextStyle = useAnimatedStyle(() => ({
     fontSize:
       theme === "fiveLongWords"
-        ? CARD_WIDTH * 0.15
+        ? (CARD_WIDTH - 2 * BORDER_PADDING) / 6
         : theme === "fourLongWords"
-        ? CARD_WIDTH * 0.2
+        ? (CARD_WIDTH - 2 * BORDER_PADDING) / 5
         : theme === "threeLongWords"
-        ? CARD_WIDTH * 0.3
-        : CARD_WIDTH * 0.4,
+        ? (CARD_WIDTH - 2 * BORDER_PADDING) / 3
+        : (CARD_WIDTH - 2 * BORDER_PADDING) / 2,
   }));
 
   const date = useDerivedValue(() => {
