@@ -25,6 +25,7 @@ import {
 import { SplashScreen, useRouter } from "expo-router";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "./_layout";
+import * as ScreenOrientation from "expo-screen-orientation";
 
 const words = consonants
   .flatMap((con) => {
@@ -51,6 +52,7 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
   // console.log(words);
   const [theme, setTheme, isEnabled] = useContext(ThemeContext);
+  const [orientation, setOrientation] = useState();
   const router = useRouter();
   const shuffleBack = useSharedValue(false);
 
@@ -65,6 +67,45 @@ export default function App() {
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
+
+  useEffect(() => {
+    const getOrientation = async () => {
+      const current = await ScreenOrientation.getOrientationAsync();
+
+      setOrientation({
+        value: current,
+      });
+    };
+    getOrientation();
+
+    const orientationChangeSub =
+      ScreenOrientation.addOrientationChangeListener(orientationChanged);
+
+    return () => {
+      ScreenOrientation.removeOrientationChangeListener(orientationChangeSub);
+    };
+  }, [orientation]);
+
+  const orientationChanged = (result) => {
+    setOrientation({
+      value: result.orientationInfo.orientation,
+    });
+  };
+
+  if (
+    orientation &&
+    (orientation.value === ScreenOrientation.Orientation.PORTRAIT_UP ||
+      orientation.value === ScreenOrientation.Orientation.PORTRAIT_DOWN)
+  ) {
+    console.log(orientation);
+  }
+  if (
+    orientation &&
+    (orientation.value === ScreenOrientation.Orientation.LANDSCAPE_LEFT ||
+      orientation.value === ScreenOrientation.Orientation.LANDSCAPE_RIGHT)
+  ) {
+    console.log(orientation);
+  }
 
   if (!fontsLoaded) {
     return null;

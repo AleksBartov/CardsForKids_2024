@@ -3,7 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Stack, useRouter } from "expo-router";
 import { TouchableOpacity } from "react-native";
 
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const ThemeContext = createContext();
 
@@ -11,6 +11,7 @@ export default function RootLayout() {
   const [theme, setTheme] = useState("syllable");
   const [isEnabled, setIsEnabled] = useState(false);
   const router = useRouter();
+
   return (
     <ThemeContext.Provider value={[theme, setTheme, isEnabled, setIsEnabled]}>
       <Stack>
