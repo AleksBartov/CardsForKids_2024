@@ -84,13 +84,17 @@ export default function App() {
     return () => {
       ScreenOrientation.removeOrientationChangeListener(orientationChangeSub);
     };
-  }, [orientation]);
+  }, []);
 
   const orientationChanged = (result) => {
     setOrientation({
       value: result.orientationInfo.orientation,
     });
   };
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   if (
     orientation &&
@@ -105,10 +109,6 @@ export default function App() {
       orientation.value === ScreenOrientation.Orientation.LANDSCAPE_RIGHT)
   ) {
     console.log(orientation);
-  }
-
-  if (!fontsLoaded) {
-    return null;
   }
 
   return (
