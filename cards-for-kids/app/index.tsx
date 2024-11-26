@@ -25,6 +25,7 @@ import {
 import { SplashScreen, useRouter } from "expo-router";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "./_layout";
+
 import * as ScreenOrientation from "expo-screen-orientation";
 
 const words = consonants
@@ -52,6 +53,7 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
   // console.log(words);
   const [theme, setTheme, isEnabled] = useContext(ThemeContext);
+
   const [orientation, setOrientation] = useState();
   const router = useRouter();
   const shuffleBack = useSharedValue(false);
@@ -61,12 +63,6 @@ export default function App() {
     Nunito_800ExtraBold,
     Nunito_900Black,
   });
-
-  useEffect(() => {
-    if (fontsLoaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
 
   useEffect(() => {
     ScreenOrientation.unlockAsync();
@@ -92,6 +88,12 @@ export default function App() {
       value: result.orientationInfo.orientation,
     });
   };
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
 
   if (!fontsLoaded) {
     return null;
