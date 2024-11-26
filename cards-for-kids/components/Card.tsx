@@ -23,7 +23,7 @@ const CARD_HEIGHT = CARD_WIDTH * 1.614;
 const BORDER_PADDING = 6;
 const DURATION = 250;
 
-export default function Card({ textArray, index, shuffleBack }) {
+export default function Card({ textArray, index, shuffleBack, orientation }) {
   const [theme, setTheme, isEnabled] = useContext(ThemeContext);
   const offset = useSharedValue({ x: 0, y: 0 });
   const translateX = useSharedValue(0);
@@ -99,7 +99,15 @@ export default function Card({ textArray, index, shuffleBack }) {
   }));
   const rTextStyle = useAnimatedStyle(() => ({
     fontSize:
-      theme === "fiveLongWords"
+      orientation === 3 || orientation === 4
+        ? theme === "fiveLongWords"
+          ? (CARD_HEIGHT - 2 * BORDER_PADDING) / 6
+          : theme === "fourLongWords"
+          ? (CARD_HEIGHT - 2 * BORDER_PADDING) / 5
+          : theme === "threeLongWords"
+          ? (CARD_HEIGHT - 2 * BORDER_PADDING) / 3
+          : (CARD_HEIGHT - 2 * BORDER_PADDING) / 2
+        : theme === "fiveLongWords"
         ? (CARD_WIDTH - 2 * BORDER_PADDING) / 6
         : theme === "fourLongWords"
         ? (CARD_WIDTH - 2 * BORDER_PADDING) / 5
@@ -116,8 +124,37 @@ export default function Card({ textArray, index, shuffleBack }) {
   return (
     <View style={styles.box} pointerEvents="box-none">
       <GestureDetector gesture={gesture}>
-        <Animated.View style={[styles.card_container, style]}>
-          <View style={styles.card_inner_border}>
+        <Animated.View
+          style={[
+            styles.card_container,
+            {
+              width:
+                orientation === 3 || orientation === 4
+                  ? CARD_HEIGHT
+                  : CARD_WIDTH,
+              height:
+                orientation === 3 || orientation === 4
+                  ? CARD_WIDTH
+                  : CARD_HEIGHT,
+            },
+            style,
+          ]}
+        >
+          <View
+            style={[
+              styles.card_inner_border,
+              {
+                width:
+                  orientation === 3 || orientation === 4
+                    ? CARD_HEIGHT - BORDER_PADDING
+                    : CARD_WIDTH - BORDER_PADDING,
+                height:
+                  orientation === 3 || orientation === 4
+                    ? CARD_WIDTH - BORDER_PADDING
+                    : CARD_HEIGHT - BORDER_PADDING,
+              },
+            ]}
+          >
             <ReText style={[styles.card_text, rTextStyle]} text={date} />
           </View>
         </Animated.View>
@@ -134,8 +171,6 @@ const styles = StyleSheet.create({
   },
   card_container: {
     backgroundColor: MyPalette.myWhite,
-    width: CARD_WIDTH,
-    height: CARD_HEIGHT,
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
@@ -150,8 +185,6 @@ const styles = StyleSheet.create({
   },
   card_inner_border: {
     backgroundColor: MyPalette.myWhite,
-    width: CARD_WIDTH - BORDER_PADDING,
-    height: CARD_HEIGHT - BORDER_PADDING,
     borderRadius: 10,
     borderColor: MyPalette.darkBlue,
     borderWidth: 1.2,

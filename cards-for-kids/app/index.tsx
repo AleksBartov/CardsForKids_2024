@@ -69,6 +69,7 @@ export default function App() {
   }, [fontsLoaded]);
 
   useEffect(() => {
+    ScreenOrientation.unlockAsync();
     const getOrientation = async () => {
       const current = await ScreenOrientation.getOrientationAsync();
 
@@ -96,21 +97,6 @@ export default function App() {
     return null;
   }
 
-  if (
-    orientation &&
-    (orientation.value === ScreenOrientation.Orientation.PORTRAIT_UP ||
-      orientation.value === ScreenOrientation.Orientation.PORTRAIT_DOWN)
-  ) {
-    console.log(orientation);
-  }
-  if (
-    orientation &&
-    (orientation.value === ScreenOrientation.Orientation.LANDSCAPE_LEFT ||
-      orientation.value === ScreenOrientation.Orientation.LANDSCAPE_RIGHT)
-  ) {
-    console.log(orientation);
-  }
-
   return (
     <GestureHandlerRootView
       style={{ flex: 1, backgroundColor: MyPalette.middleBlue }}
@@ -131,35 +117,77 @@ export default function App() {
       </Pressable>
       {theme === "syllable" &&
         words.map((l, i) => (
-          <Card key={i} textArray={l} index={i} shuffleBack={shuffleBack} />
+          <Card
+            key={i}
+            textArray={l}
+            index={i}
+            shuffleBack={shuffleBack}
+            orientation={orientation.value}
+          />
         ))}
       {theme === "letters" &&
         letters.map((l, i) => (
-          <Card key={i} textArray={l} index={i} shuffleBack={shuffleBack} />
+          <Card
+            key={i}
+            textArray={l}
+            index={i}
+            shuffleBack={shuffleBack}
+            orientation={orientation.value}
+          />
         ))}
       {theme === "threeLongWords" &&
         threeLongWords.map((l, i) => (
-          <Card key={i} textArray={l} index={i} shuffleBack={shuffleBack} />
+          <Card
+            key={i}
+            textArray={l}
+            index={i}
+            shuffleBack={shuffleBack}
+            orientation={orientation.value}
+          />
         ))}
       {theme === "fourLongWords" &&
         !isEnabled &&
         fourLongWords.map((l, i) => (
-          <Card key={i} textArray={l} index={i} shuffleBack={shuffleBack} />
+          <Card
+            key={i}
+            textArray={l}
+            index={i}
+            shuffleBack={shuffleBack}
+            orientation={orientation.value}
+          />
         ))}
       {theme === "fourLongWords" &&
         isEnabled &&
         fourLongWords_.map((l, i) => (
-          <Card key={i} textArray={l} index={i} shuffleBack={shuffleBack} />
+          <Card
+            key={i}
+            textArray={l}
+            index={i}
+            shuffleBack={shuffleBack}
+            orientation={orientation.value}
+          />
         ))}
       {theme === "fiveLongWords" &&
         !isEnabled &&
         fiveLongWords.map((l, i) => (
-          <Card key={i} textArray={l} index={i} shuffleBack={shuffleBack} />
+          <Card
+            key={i}
+            textArray={l}
+            index={i}
+            shuffleBack={shuffleBack}
+            orientation={orientation.value}
+          />
         ))}
       {theme === "fiveLongWords" &&
         isEnabled &&
         fiveLongWords_.map((l, i) => (
-          <Card key={i} textArray={l} index={i} shuffleBack={shuffleBack} />
+          <Card
+            key={i}
+            textArray={l}
+            index={i}
+            shuffleBack={shuffleBack}
+            orientation={orientation.value}
+          />
         ))}
       <StatusBar style="light" />
     </GestureHandlerRootView>
