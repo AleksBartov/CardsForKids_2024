@@ -1,23 +1,15 @@
 import {
   Dimensions,
+  ScrollView,
   StyleSheet,
   Switch,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { MyPalette } from "@/constants/Colors";
-import Animated, {
-  FadeIn,
-  FadeInDown,
-  useAnimatedStyle,
-  useSharedValue,
-  withDelay,
-  withRepeat,
-  withSequence,
-  withTiming,
-} from "react-native-reanimated";
+import Animated, { FadeInDown } from "react-native-reanimated";
 import { useRouter } from "expo-router";
 import { ThemeContext } from "./_layout";
 
@@ -83,86 +75,88 @@ const settings = () => {
   return (
     <View style={styles.box}>
       <Text style={styles.title}>Учу:</Text>
-      <View style={styles.boxes}>
-        <TouchableOpacity
-          onPress={() => {
-            setTheme("letters");
-            router.back();
-          }}
-        >
-          <Animated.View
-            entering={FadeInDown.delay(200).duration(500)}
-            style={[styles.textBox]}
-          >
-            <Text style={styles.text}>буквы</Text>
-          </Animated.View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            setTheme("syllable");
-            router.back();
-          }}
-        >
-          <Animated.View
-            entering={FadeInDown.delay(250).duration(500)}
-            style={[styles.textBox]}
-          >
-            <Text style={styles.text}>слоги</Text>
-          </Animated.View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            setTheme("threeLongWords");
-            router.back();
-          }}
-        >
-          <Animated.View
-            entering={FadeInDown.delay(300).duration(500)}
-            style={[styles.textBox]}
-          >
-            <Text style={styles.text}>слова из 3 букв</Text>
-          </Animated.View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            setTheme("fourLongWords");
-            router.back();
-          }}
-        >
-          <Animated.View
-            entering={FadeInDown.delay(350).duration(500)}
-            style={[styles.textBox]}
-          >
-            <Text style={styles.text}>слова из 4 букв</Text>
-          </Animated.View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            setTheme("fiveLongWords");
-            router.back();
-          }}
-        >
-          <Animated.View
-            entering={FadeInDown.delay(400).duration(500)}
-            style={[styles.textBox]}
-          >
-            <Text style={styles.text}>слова из 5 букв</Text>
-          </Animated.View>
-        </TouchableOpacity>
-        <View style={styles.switch}>
-          <Text style={styles.switchText}>с дефисом</Text>
-          <Switch
-            trackColor={{
-              false: MyPalette.darkBlue,
-              true: "#eae6fd",
+      <ScrollView>
+        <View style={styles.boxes}>
+          <TouchableOpacity
+            onPress={() => {
+              setTheme("letters");
+              router.back();
             }}
-            thumbColor={isEnabled ? MyPalette.lightBlue : MyPalette.myWhite}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={isEnabled}
-          />
+          >
+            <Animated.View
+              entering={FadeInDown.delay(200).duration(500)}
+              style={[styles.textBox]}
+            >
+              <Text style={styles.text}>буквы</Text>
+            </Animated.View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setTheme("syllable");
+              router.back();
+            }}
+          >
+            <Animated.View
+              entering={FadeInDown.delay(250).duration(500)}
+              style={[styles.textBox]}
+            >
+              <Text style={styles.text}>слоги</Text>
+            </Animated.View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setTheme("threeLongWords");
+              router.back();
+            }}
+          >
+            <Animated.View
+              entering={FadeInDown.delay(300).duration(500)}
+              style={[styles.textBox]}
+            >
+              <Text style={styles.text}>слова из 3 букв</Text>
+            </Animated.View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setTheme("fourLongWords");
+              router.back();
+            }}
+          >
+            <Animated.View
+              entering={FadeInDown.delay(350).duration(500)}
+              style={[styles.textBox]}
+            >
+              <Text style={styles.text}>слова из 4 букв</Text>
+            </Animated.View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setTheme("fiveLongWords");
+              router.back();
+            }}
+          >
+            <Animated.View
+              entering={FadeInDown.delay(400).duration(500)}
+              style={[styles.textBox]}
+            >
+              <Text style={styles.text}>слова из 5 букв</Text>
+            </Animated.View>
+          </TouchableOpacity>
+          <View style={styles.switch}>
+            <Text style={styles.switchText}>с дефисом</Text>
+            <Switch
+              trackColor={{
+                false: MyPalette.darkBlue,
+                true: "#eae6fd",
+              }}
+              thumbColor={isEnabled ? MyPalette.lightBlue : MyPalette.myWhite}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              value={isEnabled}
+            />
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };

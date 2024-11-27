@@ -17,7 +17,7 @@ import { ThemeContext } from "@/app/_layout";
 
 const { width, height } = Dimensions.get("window");
 
-const SNAP_POINTS = [-width, 0, width];
+const SNAP_POINTS = [-Math.max(width, height), 0, Math.max(width, height)];
 const CARD_WIDTH = width > height ? width * 0.4 : width * 0.6;
 const CARD_HEIGHT = CARD_WIDTH * 1.614;
 const BORDER_PADDING = 6;
