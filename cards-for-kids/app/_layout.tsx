@@ -30,6 +30,20 @@ export default function RootLayout() {
             ),
           }}
         />
+        <Stack.Screen
+          name="purchase"
+          options={{
+            presentation: "modal",
+            headerTitle: "",
+            headerShadowVisible: true,
+            headerStyle: { backgroundColor: MyPalette.middleBlue },
+            headerRight: () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="close" size={30} color={MyPalette.myWhite} />
+              </TouchableOpacity>
+            ),
+          }}
+        />
       </Stack>
     </ThemeContext.Provider>
   );

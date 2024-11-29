@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { MyPalette } from "@/constants/Colors";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { useRouter } from "expo-router";
@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
 
 const settings = () => {
   const [theme, setTheme, isEnabled, setIsEnabled] = useContext(ThemeContext);
+  const [isPad, setIsPad] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const router = useRouter();
 
@@ -131,8 +132,7 @@ const settings = () => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              setTheme("fiveLongWords");
-              router.back();
+              !isPad && router.push("/purchase");
             }}
           >
             <Animated.View
