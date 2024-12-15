@@ -132,7 +132,8 @@ const settings = () => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              !isPad && router.push("/purchase");
+              setTheme("fiveLongWords");
+              router.back();
             }}
           >
             <Animated.View
