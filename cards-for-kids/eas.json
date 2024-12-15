@@ -5,6 +5,13 @@
         "buildType": "apk"
       }
     },
+    "preview_apk": {
+      "android": {
+        "buildType": "apk",
+        "autoIncrement": true,
+        "distribution": "internal"
+      }
+    },
     "development": {
       "developmentClient": true,
       "distribution": "internal"
