@@ -37,5 +37,8 @@
         "appleTeamId": "S4H22YJUMS"
       }
     }
+  },
+  "cli": {
+    "appVersionSource": "remote"
   }
 }
